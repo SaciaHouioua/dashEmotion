@@ -1,0 +1,6 @@
+,Classifier,TimePipe,f1ScorePipe
+0,LogReg,16.282,0.774
+1,KNeig,0.562,0.403
+2,DTree,10.753,0.731
+3,svml,10.766,0.765
+4,SGD,1.4,0.777

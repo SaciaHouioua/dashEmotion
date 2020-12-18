@@ -1,0 +1,7 @@
+,Classifier,Time,f1Score
+0,LogReg,11.598,0.776
+1,KNeig,0.031,0.51
+2,DTree,9.353,0.748
+3,svml,3.819,0.764
+4,svm,93.344,0.77
+5,SGD,0.496,0.78
