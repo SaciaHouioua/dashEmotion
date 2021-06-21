@@ -1,0 +1,7 @@
+,Classifier,Time,f1Score
+0,LogisticRegression,15.228,0.895
+1,KNeighbors,0.022,0.567
+2,DecisionTree,2.752,0.871
+3, LinearSVC,1.248,0.893
+4,SVM,28.753,0.883
+5,SGD,0.359,0.898

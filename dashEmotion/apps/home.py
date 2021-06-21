@@ -49,7 +49,7 @@ import numpy as np
 
 from app import app, server
 
-from apps import home , page1, page2, page3
+from apps import home , page1, page2, page3, slide
 
 
 
@@ -64,14 +64,14 @@ layout = html.Div([
         dbc.Row([
             dbc.Col(dbc.Card(children=[
                                        # html.H5(children='Data', className="text-center"),
-                                       dbc.Button("DATA" , href="/page1",
+                                       dbc.Button("Visualize" , href="/page1",
                                                                    color="primary",
                                                         className="mt-3"),
                                        html.Img(src="/assets/data.jpeg", height="150px")]),),
            
             dbc.Col(dbc.Card(children=[
-                                       # html.H5(children='MAchine Learning',className="text-center"),
-                                       dbc.Button("Machine Learning" , href="/page2",
+                                       # html.H5(children='MachineLearning',className="text-center"),
+                                       dbc.Button("Analyze" , href="/page2",
                                                                    color="primary",
                                                         className="mt-3"),
                                        html.Img(src="./assets/ml.png", height="150px")]),),

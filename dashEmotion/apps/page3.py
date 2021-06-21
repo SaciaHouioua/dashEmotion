@@ -19,7 +19,7 @@ from app import app, server
 
 import graphes
 
-from apps import home, page1, page2, page3
+from apps import home, page1, page2, page3, slide
 
 import joblib
 
@@ -38,12 +38,12 @@ layout = html.Div([
             dbc.Col(html.H6(children='For this APP, we use the first dataset to training our prediction model because it is much more efficient'), className="mb-4")
         ]),
         
-        dbc.Row([
-            dbc.Col(html.Img(src="/assets/sentiments.jpeg", height="150px"))
-        ]),
+       # dbc.Row([
+            #dbc.Col(html.Img(src="/assets/wheel.jpeg", height="150px", style={"verticalAlign": "middle"}))
+        #]),
         
         dbc.Row([
-            dbc.Col(html.H6(children='To try our APP, you can input your text'), className="mb-2")
+            dbc.Col(html.H6(children='To try our APP, you can input your text'), className="mb-2  text-center ")
         ]),
         dbc.Row([
             dbc.Col(dcc.Input(id="input1", type="text", placeholder="Type your text", debounce=True), className="mb-4 text-center")

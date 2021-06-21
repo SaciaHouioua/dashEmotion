@@ -16,11 +16,13 @@ import dash_bootstrap_components as dbc
 import plotly.express as px
 import numpy as np
 
-from apps import home , page1, page2, page3
+from apps import home , page1, page2, page3, slide
 
-
+datak = pd.read_csv('data/Emotion_final.csv')
 
 import graphes
+
+
 
 tab1_content = dash_table.DataTable(id='container-button-timestamp',
             #data=df.to_dict('records'),
@@ -85,18 +87,18 @@ layout = html.Div([
         ]), 
         dbc.Row([
                 dbc.Col(dcc.Graph(id='graph-1',figure=graphes.fig),),
-                dbc.Col(dcc.Graph(id='graph-2',figure=graphes.fig4), className="mb-2"),
+                dbc.Col(dcc.Graph(id='graph-4',figure=graphes.fig4), className="mb-2"),
             ]),
         dbc.Row([
                 dbc.Col(html.H6(children='The shape of first dataset :  (21459, 2) with 6 emotions classes.         The shape of the second dataset : (40000, 4 ) with 13 emotions classes'), className="mb-4")
             ]),
         dbc.Row([
-                dbc.Col(html.H4(children='The proportion'), className="mb-1")
+                dbc.Col(html.H4(children='The proportion of emotions'), className="mb-1")
             ]),
        
         dbc.Row([
-                dbc.Col(dcc.Graph(id='graph-5',figure=graphes.fig2),),
-                dbc.Col(dcc.Graph(id='graph-6',figure=graphes.fig3), className="mb-4"),
+                dbc.Col(dcc.Graph(id='graph-2',figure=graphes.fig2),),
+                dbc.Col(dcc.Graph(id='graph-3',figure=graphes.fig3), className="mb-4"),
             ]),
         
         ],

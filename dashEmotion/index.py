@@ -16,7 +16,7 @@ import dash
 
 from app import app, server
 
-from apps import home , page1, page2, page3
+from apps import home , page1, page2, page3, slide
 
 
 server = app.server
@@ -25,8 +25,9 @@ dropdown = dbc.DropdownMenu(
     children=[
         dbc.DropdownMenuItem("Home", href="/home"),
         dbc.DropdownMenuItem("Data", href="/page1"),
-        dbc.DropdownMenuItem("Machine Learning", href="/page2"),
-        dbc.DropdownMenuItem("Emotion Predict", href="/page3"),
+        dbc.DropdownMenuItem("Analysis", href="/page2"),
+        dbc.DropdownMenuItem("Predict", href="/page3"),
+        dbc.DropdownMenuItem("Slide", href="/slide"),
     ],
     nav = True,
     in_navbar = True,
@@ -39,7 +40,7 @@ navbar = dbc.Navbar(
             html.A(
                 dbc.Row(
                     [
-                        #dbc.Col(html.Img(src="/assets/favicon.ico", height="30px")),
+                        dbc.Col(html.Img(src="/assets/wheel.jpeg", height="30px")),
                         dbc.Col(dbc.NavbarBrand("The Wheel of Emotions", className="ml-2")),
                     ],
                     align="center",
@@ -93,6 +94,8 @@ def display_page(pathname):
         return page2.layout
     elif pathname == '/page3':
         return page3.layout
+    elif pathname == '/slide':
+        return slide.layout
     else:
         return home.layout
 

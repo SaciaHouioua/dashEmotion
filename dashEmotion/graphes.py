@@ -10,10 +10,9 @@ import numpy as np # algèbre linéaire
 import pandas as pd # procès de données, CSV file I/O (e.g. pd.read_csv)
 
 import plotly.graph_objs as go
+import joblib
 
 import plotly.offline as pyo
-
-import joblib
 
 #from plotly.offline import iplot
 import plotly.express as px
@@ -58,7 +57,6 @@ loaded_model = joblib.load(filename)
 
 
 
-
 # le pourcentage des différents sentiments :
 # definition d'une fonction qui calcule le pourcentage d'un sentiment par rapport à la taille du data set:
 
@@ -87,7 +85,7 @@ fig.update_layout( title="DataSet 1 ",
     yaxis_title="Count")
 
 
-fig2 = px.pie(values=listE, names=listEmotion, title='Pourcentage des sentiments dans le dataset 1')
+fig2 = px.pie(values=listE, names=listEmotion, title='Percentage emotion dataset 1')
 #fig2.update_layout( title="PieChart des sentiments ")
 fig2.update_traces(textposition='inside', textinfo='percent+label')
 
@@ -113,10 +111,100 @@ for i in range (len(listEmotion1)):
     listE1.append(sumE)
 
 
-fig3 = px.pie(values=listE1 , names=listEmotion1, title='Pourcentage des sentiments dans le dataset 2')
+fig3 = px.pie(values=listE1 , names=listEmotion1, title='Percentage emtions dataset 2')
 
-fig4 = px.histogram(x=dataw["sentiment"], nbins=13).update_xaxes(categoryorder = 'total descending', title="le dataset 2")
+fig4 = px.histogram(x=dataw["sentiment"], nbins=13).update_xaxes(categoryorder = 'total descending')
+fig4.update_layout( title="DataSet 2 ",
+    xaxis_title="Emotion",
+    yaxis_title="Count")
+#chargement des résultats 
 
+df1 = pd.read_csv('data/result1.csv')
+
+#suppression des colonnes inutiles 
+df1.drop(['Unnamed: 0'], axis = 1, inplace = True)
+
+
+
+fig5 = go.Figure(data=[go.Table(
+    header=dict(values=list(df1.columns),
+                fill_color='paleturquoise',
+                align='left'),
+    cells=dict(values=[df1.Classifier, round(df1.Time,3), round(df1.f1Score,3)],
+               fill_color='lavender',
+               align='left'))
+])
+
+
+
+# dataset1 comparaison du score des 5 classifiers avec et sans pipeline
+fig7 = go.Figure()
+fig7.add_trace(go.Scatter(x=df1["Classifier"], y=df1["f1Score"],
+                    mode='lines',
+                    name='Comapraison of score classifiers'))
+
+
+
+
+
+df2 = pd.read_csv('data/result2.csv')
+#suppression des colonnes inutiles 
+df2.drop(['Unnamed: 0'], axis = 1, inplace = True)
+
+fig6 = go.Figure(data=[go.Table(
+    header=dict(values=list(df2.columns),
+                fill_color='paleturquoise',
+                align='left'),
+    cells=dict(values=[df2.Classifier, round(df2.Time,3), round(df2.f1Score,3)],
+               fill_color='lavender',
+               align='left'))
+])
+
+
+
+# dataset1 comparaison du score des 5 classifiers dataset1 et dataseta2
+fig8 = go.Figure()
+fig8.add_trace(go.Scatter(x=df2["Classifier"], y=df2["f1Score"],
+                    mode='lines',
+                    name='Comapraison of score classifiers'))
+
+
+
+
+fig9 = go.Figure()
+fig9.add_trace(go.Scatter(x=df1["Classifier"], y=df1["Time"],
+                    mode='lines',
+                    name='Time'))
+
+
+fig10 = go.Figure()
+fig10.add_trace(go.Scatter(x=df2["Classifier"], y=df2["Time"],
+                    mode='lines',
+                    name='Time'))
+
+# report classification pour dataset1 et 2
+
+report1 = pd.read_csv('data/classification_report1.csv')
+
+fig11 = go.Figure(data=[go.Table(
+    header=dict(values=list(report1.columns),
+                fill_color='paleturquoise',
+                align='left'),
+    cells=dict(values=[report1['class'], report1['precision'], report1['recall'], report1['f1_score'], report1['support']],
+               fill_color='lavender',
+               align='left'))
+])
+
+report2 = pd.read_csv('data/classification_report2.csv')
+
+fig12 = go.Figure(data=[go.Table(
+    header=dict(values=list(report2.columns),
+                fill_color='paleturquoise',
+                align='left'),
+    cells=dict(values=[report2['class'], report2['precision'], report2['recall'], report2['f1_score'], report2['support']],
+               fill_color='lavender',
+               align='left'))
+])
 '''
 # chargement des résultats 
 
